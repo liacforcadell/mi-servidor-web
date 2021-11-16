@@ -52,14 +52,13 @@
           { data: 'population'},
           {data: 'numericCode',
           "render": function (data, type, row) {
-          return '<a href="'+data+'">Mas informacion</a>'}}
+          return '<center><a href="'+data+'">Mas informacion</a></center>'}}
           ],
           columnDefs: [{
           defaultContent: "",
           targets: "_all"
           }]
       } );
-      console.log(response)
       });
 
       $('.footerContainer').load('../template/footer.html');
@@ -110,6 +109,7 @@
     </section>
     <!-- /.content -->
     </div>
+
 
   <!-- Footer -->
   <div class="footerContainer"></div>

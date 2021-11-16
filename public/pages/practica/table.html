@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AdminLTE 3 | Dashboard</title>
+  
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+  <!-- jQuery -->
+  <script src="../../plugins/jquery/jquery.min.js"></script>
+  <!-- jQuery UI 1.11.4 -->
+  <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
+  <!-- DataTables -->  
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+  
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+  
+  <!-- AdminLTE App -->
+  <script src="../../dist/js/adminlte.js"></script>
+
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+
+  <!-- Preloader -->
+  <div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__shake" src="../../dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+  </div>
+
+  <script>
+    $(function() {
+      $('.navbarContainer').load('../template/navbar.html');
+      $('.asideContainer').load('../template/aside.html');
+
+      $.getJSON("https://restcountries.com/v2/all", function(response){
+          $('#tabla').DataTable( {
+          data: response,
+          columns: [
+          { data: 'name'},
+          { data: 'name'},
+          { data: 'capital'},
+          { data: 'region'},
+          { data: 'population'},
+          ],
+          columnDefs: [{
+          defaultContent: "",
+          targets: "_all"
+          }]
+      } );
+      console.log(response);
+      });
+
+      $('.footerContainer').load('../template/footer.html');
+      });
+  </script>
+
+  <!-- Navbar -->
+  <div class="navbarContainer"></div>
+  <!-- Sidebar -->
+  <div class="asideContainer"></div>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+                <h1>Tablas</h1>
+              </div>
+            </div>
+          </div><!-- /.container-fluid -->
+        </section>
+
+    <section class="content">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Paises del Mundo</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+          <table id="tabla" class="table table-bordered table-hover" style="width:100%">
+            <thead>
+            <tr>
+              <th>Bandera</th>
+              <th>Pais</th>
+              <th>Capital</th>
+              <th>Region</th>
+              <th>Poblacion</th>
+              <th>Detalle</th>
+            </tr>
+            </thead>
+            </table>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </section>
+    <!-- /.content -->
+    </div>
+
+  <!-- Footer -->
+  <div class="footerContainer"></div>
+
+</body>
+</html>

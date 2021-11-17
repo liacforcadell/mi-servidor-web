@@ -58,15 +58,25 @@
                 { defaultContent: "", targets: 2},
                 
                 { 
-                  defaultContent: "<center><button type='button' class='btn btn-secondary' data-toggle='modal' data-target='#myModal''>Mas informacion</button></center>", targets: -1,
+                  defaultContent: "<center><button type='button' class='btn btn-secondary' data-toggle='modal' data-target='#myModal''>Más información</button></center>", targets: -1,
                 }]
             
       }); 
 
         $('#tablaPaises tbody').on('click', 'button', function() {
           
-          var data1 = tablaPaises.row( $(this).closest('tr') ).data();
-          console.log(data1)
+          var data = tablaPaises.row( $(this).parents('tr') ).data();
+          console.log(data)
+
+          $('.imagenPais').html(
+            '<center><img src="'+data['flag']+'"class="rounded mx-auto d-block" style="width:200px;height:150px;filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.7))"></img></center><br>'
+          )
+
+          $('.contenido').html(
+
+          '<table class="table dtr-details" width="100%"><tbody><tr><td>Nombre<td><td>' + data['name'] + '</td></tr><tr><td>Capital<td><td>' + data['capital'] + '</td></tr><tr><td>Población<td><td>' + data['population'] + '</td></tr><tr><td>Región<td><td>' + data['region'] + '</td></tr><tr><td>Área<td><td>' + data['area'] + '</td></tr></tbody></table>'
+          );
+
       });
       
       });
@@ -107,10 +117,10 @@
             <thead>
             <tr>
               <th>Bandera</th>
-              <th>Pais</th>
+              <th>País</th>
               <th>Capital</th>
-              <th>Region</th>
-              <th>Poblacion</th>
+              <th>Región</th>
+              <th>Población</th>
               <th>Detalle</th>
             </tr>
             </thead>
@@ -130,9 +140,11 @@
             <h5 class="modal-title">Datos de paises</h5>
           </div>
           <div class="modal-body">
+            <div class="imagenPais"></div>
+            <div class="contenido"></div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
           </div>
         </div>
       </div>

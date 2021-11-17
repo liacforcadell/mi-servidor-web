@@ -65,10 +65,8 @@
 
         $('#tablaPaises tbody').on('click', 'button', function() {
           
-          var paisRow = tablaPaises.row( $(this).closest('tr') ).data();
-          console.log(paisRow)
-
-        $('#myModal').modal('show');
+          var data1 = tablaPaises.row( $(this).closest('tr') ).data();
+          console.log(data1)
       });
       
       });

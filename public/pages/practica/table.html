@@ -17,8 +17,9 @@
   <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
   <!-- DataTables -->  
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
-  
   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+  <!-- Bootstrap -->  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   
   <!-- AdminLTE App -->
   <script src="../../dist/js/adminlte.js"></script>
@@ -33,37 +34,43 @@
   </div>
 
   <script>
+
+      function myFunction() {
+        var myModal = new bootstrap.Modal(document.getElementById('myModal'))
+        myModal.show()
+      }
+
     $(function() {
       $('.navbarContainer').load('../template/navbar.html');
       $('.asideContainer').load('../template/aside.html');
 
       $.getJSON("https://restcountries.com/v2/all", function(response){
           tablaPaises = $('#tabla').DataTable( {
-          language:{url: '//cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json'},            
-          data: response,
-          columns: [
-          {
-          data: 'flag',
-          "render": function (data, type, row) {
-          return '<center><img src="'+data+'"style="width:50px;height:30px;"></img></center>';;
-          }},
-          { data: 'name'},
-          { data: 'capital'},
-          { data: 'region'},
-          { data: 'population'},
-          {data: 'numericCode',
-          "render": function (data, type, row) {
-          return '<center><a href="'+data+'">Mas informacion</a></center>'}}
-          ],
-          columnDefs: [{
-          defaultContent: "",
-          targets: "_all"
-          }]
-      } );
+            language:{url: '//cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json'},            
+            data: response,
+            columns: [
+                {
+                data: 'flag',
+                "render": function (data, type, row) {
+                return '<center><img src="'+data+'"style="width:50px;height:30px;"></img></center>';
+                }},
+                { data: 'name'},
+                { data: 'capital'},
+                { data: 'region'},
+                { data: 'population'},
+                { data: 'data'},
+                ],
+            columnDefs: [
+                { defaultContent: "", targets: 2},
+                { defaultContent: "<button type='button' class='btn btn-secondary' data-toggle='modal' data-target='#myModal' onclick='myFunction()''>Mas informacion</button>", targets: -1}
+            ],
+            
+      }); 
+      });
       });
 
       $('.footerContainer').load('../template/footer.html');
-      });
+
   </script>
 
   <!-- Navbar -->
@@ -111,27 +118,18 @@
     <!-- /.content -->
     </div>
 
-
-    <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Launch demo modal
-</button>
-
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
+    <div class="modal" id="myModal" tabindex="-1">
+      <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Datos de paises</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+            <h5 class="modal-title">Datos de paises</h5>
           </div>
           <div class="modal-body">
-            ...
+            <p>Modal body text goes here.</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
           </div>
         </div>
       </div>

@@ -63,24 +63,34 @@
             
       }); 
 
+
         $('#tablaPaises tbody').on('click', 'button', function() {
-          
-          var data = tablaPaises.row( $(this).parents('tr') ).data();
-          console.log(data)
+        
+          var pais = tablaPaises.row( $(this).parents('tr') ).data();
+          //console.log(pais)
+
+          $.getJSON('https://restcountries.com/v3.1/name/'+ pais['name'] +'?fullText=true', function(data) {
+          //$.getJSON('https://restcountries.com/v3.1/name/aruba?fullText=true', function(data) {
+          //console.log(data)
 
           $('.imagenPais').html(
-            '<center><img src="'+data['flag']+'"class="rounded mx-auto d-block" style="width:200px;height:150px;filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.7))"></img></center><br>'
+          '<center><img src="'+data[0]['flags']['png']+'"class="rounded mx-auto d-block" style="width:200px;height:150px;filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.7))"></img></center><br>'
           )
+
+          if(data[0]['capital'] == null){
+            data[0]['capital'] = ""
+          };
 
           $('.contenido').html(
 
-          '<table class="table dtr-details" width="100%"><tbody><tr><td>Nombre<td><td>' + data['name'] + '</td></tr><tr><td>Capital<td><td>' + data['capital'] + '</td></tr><tr><td>Población<td><td>' + data['population'] + '</td></tr><tr><td>Región<td><td>' + data['region'] + '</td></tr><tr><td>Área<td><td>' + data['area'] + '</td></tr></tbody></table>'
+          '<table class="table dtr-details" width="100%"><tbody><tr><td>Nombre<td><td>' + data[0]['name']['common'] + '</td></tr><tr><td>Capital<td><td>' + data[0]['capital'] + '</td></tr><tr><td>Población<td><td>' + data[0]['population'] + '</td></tr><tr><td>Región<td><td>' + data[0]['region'] + '</td></tr><tr><td>Área<td><td>' + data[0]['area'] + '</td></tr></tbody></table>'
           );
+          });
+        });
+
 
       });
       
-      });
-
       });
 
       $('.footerContainer').load('../template/footer.html');

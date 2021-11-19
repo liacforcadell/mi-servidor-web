@@ -1,21 +1,40 @@
 
-
 .card-general {
     border-radius : 15px;
     text-align: center;
     margin-left: 2%;
 }
 
-.col-md-3{
+.delete-margin {
+    margin: 0;
+}
+
+.delete-padding {
     padding: 0;
 }
+
+
+.col-md-3, .col-md-6{
+    padding: 0;
+}
+
 .card-img-top {
     position: relative;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
 }
 
-.card-img-encima {
+.card-img-top-der {
+    background: url('https://independiente.com.py/wp-content/uploads/2021/01/Asuncion-2.jpg'),rgb(#003990);
+    background-blend-mode: darken;
+}
+
+.card-izq-text-img {
+    color: aliceblue;
+    text-align: right;
+}
+
+.card-der-text-img{
     color: aliceblue;
     text-align: right;
 }
@@ -50,32 +69,60 @@
 }
 
 .card-footer {
-    background-color: #F1285F;
     border-bottom-right-radius: 15px;
     border-bottom-left-radius: 15px;
     padding: 0;  
 }
 
+.card-footer-left {
+    background-color: #F1285F;
+}
+
+.card-footer-right {
+    background-color: #FFFF;
+}
+
 .column-card {
     float: left;
-    width: 33.33%;
+    width: 30.33%;
     padding-top: 3%;
     color: whitesmoke;
   }
-  
-  .column-card-row:after {
+
+.column-card-right {
+    border-right: 1px solid grey;
+}
+
+.column-card-row:after {
     content: "";
     display: table;
     clear: both;
   }
 
   .column-card-title {
-    font-size: 18px;
-    font-weight: bold;
     margin: 0;
   }
 
-  .column-card-text {
+  h2.column-card-title {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  p.column-card-text {
     font-size: 12px;
+  }
+
+  .column-card-text-right {
+    font-size: 20px;
+    color: grey;
+    vertical-align: auto;
+    margin: 0;
+    padding-top: 5%;
+  }
+
+
+  i.column-card-text {
+    color: #003580;
+    padding: 5% 0 10% 0;
   }
 

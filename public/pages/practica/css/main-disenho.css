@@ -2,7 +2,6 @@
     display:flex;
     align-items: flex-start;
     margin: 0 2% 2% 2%;
-
 }
 
 .card-general {
@@ -12,7 +11,12 @@
     text-align: center;
     margin-right: 2%;
     max-height: 500px;
+}
 
+.card-semaforo-general {
+    padding: 0;
+    border-radius : 15px;
+    margin-right: 2%;
 }
 
 .delete-margin {
@@ -21,6 +25,37 @@
 
 .delete-padding {
     padding: 0;
+}
+
+.image-semaforo {
+    background-color: black;
+    border-radius: 15px;
+    height: 530px;
+    max-width: 210px;
+}
+
+.image-circle {
+    border: grey 2px solid;
+    height: 150px;
+    width: 150px;
+    background-color: black;
+    border-radius: 50%;
+    margin:auto;
+    cursor: pointer;
+    transition: background-color .5s;
+
+}
+
+.pointer-red:hover {
+    background-color: red;
+}
+
+.pointer-yellow:hover {
+    background-color: yellow;
+}
+
+.pointer-green:hover {
+    background-color: #317F43;
 }
 
 .card-right {
@@ -170,6 +205,8 @@
     padding: 5% 0 10% 0;
   }
 
+
+
   @media (max-width: 1100px) {
     .container-all{   
         display:flex;
@@ -202,6 +239,12 @@
         font-size:120px;
     }
 
+    .card-semaforo-general {
+        margin-top: 2%;
+    }
+
+}
+
   @media (max-width: 600px) {
     
     .text-overlay-right {
@@ -224,5 +267,9 @@
         line-height: 10px;
     }
 
-}
+    .card-semaforo-general {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
 }

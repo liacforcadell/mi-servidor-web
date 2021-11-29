@@ -11,19 +11,23 @@
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+  <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- jQuery -->
   <script src="../../plugins/jquery/jquery.min.js"></script>
   <!-- jQuery UI 1.11.4 -->
   <script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
-  <!-- DataTables -->  
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
-  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
-  <!-- Bootstrap -->
-  <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- jquery-validation -->
+<script src="../../plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="../../plugins/jquery-validation/additional-methods.min.js"></script>
   <!-- AdminLTE App -->
   <script src="../../dist/js/adminlte.js"></script>
+<!-- Bootstrap -->
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
 
 </head>
+
+
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
@@ -77,16 +81,16 @@
                 <form id="quickForm">
                   <div class="card-body">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Nombre y Apellido</label>
-                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Ingrese el nombre y apellido">
+                      <label for="name">Nombre y Apellido</label>
+                      <input type="text" name="name" class="form-control" id="name" placeholder="Ingrese el nombre y apellido">
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputPassword1">Correo</label>
-                      <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Ingrese Email">
+                      <label for="email">Correo</label>
+                      <input type="email" name="email" class="form-control" id="email" placeholder="Ingrese Email">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Teléfono</label>
-                        <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Ingresar Nro. Celular">
+                        <label for="phoneNumber">Teléfono</label>
+                        <input type="text" name="phoneNumber" class="form-control" id="phoneNumber" placeholder="Ingresar Nro. Celular">
                       </div>
                   </div>
                   <!-- /.card-body -->
@@ -156,6 +160,60 @@
 
   <!-- Footer -->
   <div class="footerContainer"></div>
+
+
+  <script>
+    $(function () {
+      $.validator.setDefaults({
+        submitHandler: function () {
+          alert( "Registro agregado" );
+        }
+      });
+      $('#quickForm').validate({
+        rules: {
+          name: {
+            required: true,
+            name: true,
+          },
+          email: {
+            required: true,
+            email:true,
+            
+          },
+          phoneNumber: {
+            required: true,
+            phoneNumber: true,
+            minlength: 5
+          },
+        },
+        messages: {
+            name: {
+            required: "El nombre y apellido es requerido."
+          },
+          email: {
+            required: "El correo es requerido.",
+            email: "Favor ingresar un email válido."
+          },
+          phoneNumber: {
+              required: "El teléfono es requerido.",
+              minlength: "El número de teléfono debe tener al menos 10 caracteres."
+          }
+        },
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+          error.addClass('invalid-feedback');
+          element.closest('.form-group').append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+          $(element).addClass('is-invalid');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+          $(element).removeClass('is-invalid');
+        }
+      });
+    });
+    </script>
+
 
 </body>
 </html>
